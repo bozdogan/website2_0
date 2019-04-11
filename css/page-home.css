@@ -1,0 +1,17 @@
+/* portrait version on larger screens */
+#pp-landscape{display: block;}
+#pp-portrait{display: none;}
+@media (min-width:576px){
+    #pp-landscape{display: none;}
+    #pp-portrait{display: block;}
+}
+
+#login-header{
+    text-align: center;
+}
+
+#signin-btn{
+    float: right;
+}
+
+/* END OF page-home.css
