@@ -1,16 +1,4 @@
-/* portrait version on larger screens */
-.img-landscape{display: block;}
-.img-portrait{display: none;}
-@media (min-width:576px){ /* 'sm' breakpoint */
-    .img-landscape{display: none;}
-    .img-portrait{display: block;}
-}
-
-#login-header{
-    text-align: center;
-}
-
-#signin-btn{
+input[type="submit"], button[type="submit"]{
     float: right;
 }
 

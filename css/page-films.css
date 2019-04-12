@@ -3,10 +3,6 @@ body{
     color: #e0e0e0;
 }
 
-hr{
-    border-color: #e0e0e0;
-}
-
 hr.sep{
     border-color: #bbb;
     border-style: dotted none;
@@ -17,10 +13,9 @@ hr.sep{
     margin-bottom: 1rem;
 }
 
-@media (max-width:575px){ /* 'sm' breakpoint */
-    .info-btn-container{
-        text-align: center;
-    }
+.info-btn-container{text-align: center;}
+@media (min-width:768px){ /* 'md' breakpoint */
+    .info-btn-container{text-align: left;}
 }
 
 .btn-imdb{

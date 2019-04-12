@@ -1,6 +1,5 @@
 <!doctype html>
 <html lang="en">
-
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -12,11 +11,7 @@
   <link href="css/bootstrap.min.css" rel="stylesheet">
 
   <link href="css/main.css" rel="stylesheet">
-  <style>
-    input, textarea{width: 100%}
-    .media-link{margin: 0 .5rem;}
-    .media-link img{height: 48px;}
-  </style>
+  <link href="css/page-contact.css" rel="stylesheet">
   <title>bozdogan: Contact Form</title>
 </head>
 
@@ -57,62 +52,67 @@
     </div>
   </nav>
 
-  <!-- SECTION -->
+  <!-- PAGE CONTENT -->
   <main role="main" class="container">
 
-    <div class="row">
-      <div class="col">
-        <div class="text-center">
-          <h1 class="display-4">Contact Me</h1>
-          <p class="lead">To contact me, you can either fill the form or use one of the links.</p>
-        </div>
-      </div>
+    <!-- Page Header -->
+    <div class="text-center mb-4">
+      <h1 class="display-4">Contact Me</h1>
+      <p class="lead">To contact me, you can either fill the form or use one of the links.</p>
     </div>
 
     <div class="row">
-      <div class="col-md-6">
-        <!-- Form -->
-        <div class="container mb-3">
+      <div class="col-md-7">
+
+        <!-- Form Section -->
+        <div class="container">
           <form action="" onsubmit="alert('Message sent.')">
-            <div class="row">
+            <div class="row form-group">
               <div class="col-4">
-                <label for="fullname">Name and Surname</label>
+                <label for="fullname">Name & Surname</label>
               </div>
               <div class="col">
-                <input type="text" id="fullname" name="fullname" required></div>
+                <input type="text" id="fullname" class="form-control" name="fullname" required>
+              </div>
             </div>
-            <div class="row">
-              <div class="col-4"><label for="email">E-Mail</label></div>
-              <div class="col"><input type="email" id="email" name="email" required></div>
+
+            <div class="row form-group">
+              <div class="col-4">
+                <label for="email">E-Mail</label>
+              </div>
+              <div class="col">
+                <input type="email" id="email" class="form-control" name="email" required>
+              </div>
             </div>
-            <div class="row">
+
+            <div class="row form-group">
               <div class="col-4">
                 <label for="telephone">Telephone</label>
               </div>
               <div class="col">
-                <input type="text" id="telephone" name="telephone" pattern="\d+" maxlength="11"
-                  placeholder="Max. 11 digits are allowed" required>
+                <input type="text" id="telephone" class="form-control" name="telephone" pattern="\d+" maxlength="11" placeholder="Max. 11 digits are allowed" required>
               </div>
             </div>
-            <div class="row mb-3">
+
+            <div class="row form-group mb-4">
               <div class="col-4">
                 <label for="issue">Issue</label>
               </div>
               <div class="col">
-                <input type="text" id="issue" name="issue" required>
+                <input type="text" id="issue" class="form-control" name="issue" required>
               </div>
             </div>
 
-            <div class="row mb-3">
+            <div class="row form-group mb-4">
               <div class="col-4">
                 <label for="message">Message</label>
               </div>
               <div class="col">
-                <textarea id="message" name="message" maxlength="1000" required></textarea>
+                <textarea id="message" class="form-control" name="message" maxlength="1000" required></textarea>
               </div>
             </div>
 
-            <div class="row">
+            <div class="row form-group">
               <div class="col text-right">
                 <button type="submit" class="btn btn-primary" value="Send">Send</button>
               </div>
@@ -121,29 +121,41 @@
         </div>
       </div>
 
-      <!-- OR -->
-      <div class="col-md-1 text-center my-auto">
-        <p class="h2 mb-3">OR</p>
-      </div>
+      <!-- Contact Info Section -->
+      <div class="col-md">
+        <div class="container">
+          <div class="row">
 
-      <div class="col-md-5">
-          <p class="mb-5">My e-mail address is <a class="text-monospace" href="mailto:bozdoganbora42@gmail.com">bozdoganbora42@gmail.com</a>.</p>
+            <!-- "OR" -->
+            <div class="col-md text-center my-auto">
+              <p class="h2 mb-3">OR</p>
+            </div>
 
-          <!-- <a href="index.htm"><img src="res/home.png" height="48" alt="Home"></a><br> -->
+            <div class="col-md">
+              <p class="text-center mb-5">
+                My e-mail address is<br>
+                <a class="text-monospace" href="mailto:bozdoganbora42@gmail.com">bozdoganbora42@gmail.com</a>
+              </p>
 
-          <p class="lead text-center">Find me on social media:</p>
-          <p class="text-center">
-            <a href="https://facebook.com/fantastik51" class="media-link " target="_blank">
-              <img src="res/fb_icon.png" height="48" alt="Facebook" title="My Facebook Profile">
-            </a>
-            <a href="https://instagram.com/b.ozdogan_" class="media-link" target="_blank">
-              <img src="res/ig_icon.png" height="48" alt="Instagram" title="My Instagram Profile">
-            </a>
-            <a href="https://twitter.com/betakarotenfln" class="media-link" target="_blank">
-              <img src="res/tw_icon.png" height="48" alt="Twitter"
-                title="My Twitter Account (I started to use twitter :))">
-            </a>
-        </p>
+              <!-- <a href="index.htm"><img src="res/home.png" height="48" alt="Home"></a><br> -->
+
+              <p class="lead text-center">Find me on social media:</p>
+              <p class="text-center">
+                <a href="https://facebook.com/fantastik51" class="media-link " target="_blank">
+                  <img src="res/fb_icon.png" height="48" alt="Facebook" title="My Facebook Profile">
+                </a>
+                <a href="https://instagram.com/b.ozdogan_" class="media-link" target="_blank">
+                  <img src="res/ig_icon.png" height="48" alt="Instagram" title="My Instagram Profile">
+                </a>
+                <a href="https://twitter.com/betakarotenfln" class="media-link" target="_blank">
+                  <img src="res/tw_icon.png" height="48" alt="Twitter"
+                    title="My Twitter Account (I started to use twitter :))">
+                </a>
+              </p>
+            </div>
+
+          </div>
+        </div>
       </div>
     </div>
   </main>
@@ -156,5 +168,4 @@
     crossorigin="anonymous"></script>
   <script src="js/bootstrap.min.js"></script>
 </body>
-
 </html>

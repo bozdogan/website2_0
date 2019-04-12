@@ -11,12 +11,4 @@ hr.sep{
     margin-bottom: 1rem;
 }
 
-/* landscape version of covers on smaller screens */
-.img-landscape{display: block;}
-.img-portrait{display: none;}
-@media (min-width:768px){ /* 'md' breakpoint */
-    .img-landscape{display: none;}
-    .img-portrait{display: block;}
-}
-
 /* END OF page-books.css
