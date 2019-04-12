@@ -1,9 +1,9 @@
 /* portrait version on larger screens */
-#pp-landscape{display: block;}
-#pp-portrait{display: none;}
-@media (min-width:576px){
-    #pp-landscape{display: none;}
-    #pp-portrait{display: block;}
+.img-landscape{display: block;}
+.img-portrait{display: none;}
+@media (min-width:576px){ /* 'sm' breakpoint */
+    .img-landscape{display: none;}
+    .img-portrait{display: block;}
 }
 
 #login-header{

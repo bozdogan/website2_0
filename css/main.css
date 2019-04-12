@@ -9,12 +9,8 @@ body {
     background-image: url(../res/bg_grey.jpg);
 }
 
-/* landscape version of covers on smaller screens */
-.img-landscape{display: block;}
-.img-portrait{display: none;}
-@media (min-width:576px){ /* 'sm' breakpoint */
-    .img-landscape{display: none;}
-    .img-portrait{display: block;}
+ul.link-list{
+    list-style-type: none;
 }
 
 /* END OF main.css */
