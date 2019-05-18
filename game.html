@@ -26,9 +26,6 @@
 
     <div class="collapse navbar-collapse" id="navigation">
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-          <a class="nav-link small" href="hw3_jsgame.html">Only The Game</a>
-        </li>
         <li class="nav-item active">
           <a class="nav-link small" href="game.html">The Game <span class="sr-only">(current)</span></a>
         </li>
@@ -109,14 +106,12 @@
       <h2>Notes</h2>
         <li>Note 3: Use HTML5, Javascript and Canvas only. Try to use/include some semantic tags also.</li>
       
-    </ul>    
-    
-
+    </ul>
   </main>
   
   <!-- Game script -->
   <script src="js/game.js"></script>
-  <script> //Dev tools :P
+  <script> // mangifier
   function scale_ui(multiplier){
       margin.top *= multiplier;
       margin.right *= multiplier;
@@ -141,6 +136,7 @@
       platform_height *= multiplier;
       platform_startingoffset *= multiplier;
       platform_distanceto_obstacle *= multiplier;
+      platform_speed *= multiplier;
 
       ball_radius *= multiplier;
       ball_startingoffset *= multiplier;
@@ -158,6 +154,9 @@
 
       prepare_canvas();
   }
+  scale_ui(1.6);
+  draw();
+  start_screen();
   </script>
 
   <!-- Bootstrap core JavaScript -->
