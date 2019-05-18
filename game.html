@@ -116,6 +116,49 @@
   
   <!-- Game script -->
   <script src="js/game.js"></script>
+  <script> //Dev tools :P
+  function scale_ui(multiplier){
+      margin.top *= multiplier;
+      margin.right *= multiplier;
+      margin.bottom *= multiplier;
+      margin.left *= multiplier;
+
+      brick_width *= multiplier;
+      brick_height *= multiplier;
+
+      firstrow_offset *= multiplier;
+      firstrow_spacing *= multiplier;
+      vertical_rowspacing *= multiplier;
+      secondrow_offset *= multiplier;
+      secondrow_spacing *= multiplier;
+
+      obstacle_width *= multiplier;
+      obstacle_height *= multiplier;
+      obstacle_offset *= multiplier;
+      obstacle_distanceto_bricks *= multiplier;
+
+      platform_width *= multiplier;
+      platform_height *= multiplier;
+      platform_startingoffset *= multiplier;
+      platform_distanceto_obstacle *= multiplier;
+
+      ball_radius *= multiplier;
+      ball_startingoffset *= multiplier;
+      ball_distanceto_platform *= multiplier;
+      ballVelX *= multiplier;
+      ballVelY *= multiplier;
+
+      // Recalculate size and coordinates
+      canvas_width = margin.left+brick_width*3+firstrow_spacing*2+margin.right
+      canvas_height = margin.top+brick_height*2+vertical_rowspacing+obstacle_distanceto_bricks+obstacle_height+platform_distanceto_obstacle+platform_height+margin.bottom;
+
+      ballX = margin.left+ball_startingoffset;
+      ballY = canvas_height-(margin.bottom+platform_height+ball_distanceto_platform);
+      platformX = margin.left+platform_startingoffset;
+
+      prepare_canvas();
+  }
+  </script>
 
   <!-- Bootstrap core JavaScript -->
   <script src="js/jquery-3.3.1.slim.min.js"
