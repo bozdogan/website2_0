@@ -27,7 +27,7 @@ var platform_startingoffset = 120;
 var platform_distanceto_obstacle = 95;
 var platformX = margin.left+platform_startingoffset;
 var platformVelX = 0;
-const PLATFORM_VEL = 4;
+var platform_speed= 4;
 
 // CANVAS SIZE
 var canvas_width = margin.left+brick_width*3+firstrow_spacing*2+margin.right
@@ -47,14 +47,14 @@ var game_paused = false;
 var score = 0;
 
 var canvas = document.getElementById("game-canvas");
-var scorelbl = document.getElementById("score_label")
+var scorelbl = document.getElementById("score_label");
 var ctx = canvas.getContext("2d");
 
 //
 // MECHANIC FUCNTIONS //
 
 function coord(entity){
-    // center for ball, top-left corner for anything else
+    // coordinates: center for ball, top-left corner for rectangles
     
     switch(entity){
         case "red":
@@ -92,10 +92,10 @@ function coord(entity){
 }
 
 function ball_intersects_with(rectangle){
-    var deltaX = ballX - Math.max(rectangle.x, Math.min(ballX, rectangle.x + rectangle.w));
-    var DeltaY = ballY - Math.max(rectangle.y, Math.min(ballY, rectangle.y + rectangle.h));
+    var deltaX = ballX-Math.max(rectangle.x, Math.min(ballX, rectangle.x+rectangle.w));
+    var deltaY = ballY-Math.max(rectangle.y, Math.min(ballY, rectangle.y+rectangle.h));
     
-    return (deltaX * deltaX + DeltaY * DeltaY) < (ball_radius * ball_radius);
+    return (deltaX*deltaX + deltaY*deltaY) < (ball_radius*ball_radius);
 }
 
 function elastic_collision(obstacle){
@@ -103,6 +103,7 @@ function elastic_collision(obstacle){
 
     if(ballY<obstacle.y || ballY>obstacle.y+obstacle.h) // ball collides from above or below
         ballVelY = -ballVelY;
+  
     if(ballX<obstacle.x || ballX>obstacle.x+obstacle.w) // ball collides from one of the sides
         ballVelX = -ballVelX;
 }
@@ -112,21 +113,20 @@ function assign_input_handlers(){
     if(!_input_handlers_assigned){
         document.addEventListener("keydown", function(e){
             if (e.key == "Right" || e.key == "ArrowRight")
-                platformVelX = PLATFORM_VEL;
+                platformVelX = platform_speed;
 
             if (e.key == "Left" || e.key == "ArrowLeft")
-                platformVelX = -PLATFORM_VEL;
+                platformVelX = -platform_speed;
         });
 
         document.addEventListener("keyup", function(e){
             if (e.key == "Right" || e.key == "ArrowRight")
-                if(platformVelX==PLATFORM_VEL)
+                if(platformVelX==platform_speed)
                     platformVelX = 0; // stop going right
             
             if (e.key == "Left" || e.key == "ArrowLeft")
-                if(platformVelX==-PLATFORM_VEL)
-                    platformVelX = 0;// stop going left
-            
+                if(platformVelX==-platform_speed)
+                    platformVelX = 0; // stop going left  
         });
         
         _input_handlers_assigned = true;
@@ -234,26 +234,39 @@ function game_loop(){
     
     // Collusion with the paddle
     if(ball_intersects_with(platform)){
-        //@ check side collisions first, if so, shift the ball
-        if(ballX<platform.x || ballX>platform.x+platform.w){
-            // ball collides from one of the sides
-            ballVelX = -ballVelX;
+        //@ check left and right side collisions seperately to prevent
+        //@ ball being stuck in the paddle and send the ball to appropriate
+        //@ direction.
+        
+        if(ballX<platform.x){
+            // ball collides from left
+            ballVelX = -Math.abs(ballVelX);
+            ballX += platformVelX;
+        }
+      
+        if(ballX>platform.x+platform.w){
+            // ball collides from right
+            ballVelX = Math.abs(ballVelX);
             ballX += platformVelX;
         }
         
-        else if(ballY<platform.y || ballY>platform.y+platform.h)
-            // ball collides from above or below
-            ballVelY = -ballVelY;
-        
-        else if(ballY<platform.y || ballY>platform.y+platform.h)
-            // ball stuck in the paddle,  happens when the paddle moves
-            // faster than the ball. in this case, send the ball up
+        if(ballY<platform.y)
+            // ball collides from above
+            // if it somehow manages to come from below with upwards velocity, let it pass..
             ballVelY = -Math.abs(ballVelY);
     }
     
     // Collusion with walls
-    if(ball_intersects_with(leftwall) || ball_intersects_with(rightwall))
-        ballVelX = -ballVelX;
+    //@ left and right wall collusions need to explicitly directed
+    //@ as paddle-pushing can make the ball out-of-bounds
+    
+    if(ball_intersects_with(leftwall))
+        // push right
+        ballVelX = Math.abs(ballVelX);
+  
+    if(ball_intersects_with(rightwall))
+        // push left
+        ballVelX = -Math.abs(ballVelX);
     
     if(ball_intersects_with(topwall))
         ballVelY = -ballVelY;
@@ -309,7 +322,7 @@ function game_loop(){
         elastic_collision(greenbrick);
     }
     
-    if(score==250){
+    if(score>=250){
         // WIN CONDITION
         game_paused = true;
         draw(); // to remove the last brick
