@@ -326,7 +326,7 @@ function game_loop(){
         // WIN CONDITION
         game_paused = true;
         draw(); // to remove the last brick
-        alert("CONGRATULATIONS!");
+        setTimeout(function(){alert("CONGRATULATIONS!")}, 100); // Chrome's alerts interrupts draw
     }
     
     // Paddle collusion detectection
